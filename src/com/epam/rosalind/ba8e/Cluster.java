@@ -1,34 +1,39 @@
 package com.epam.rosalind.ba8e;
 
 /**
- * Created by Aleksandr_Kolesov on 5/11/2016.
+ * Created by Aleksandr_Kolesov on 5/18/2016.
  */
 public class Cluster {
-    private String name;
-    private float value;
-    private Cluster node1;
-    private Cluster node2;
+    private Cluster cluster1 = null;
+    private Cluster cluster2 = null;
+    private String label;
+    private int size = 1;
 
-    public String getName() {
-        return name;
+    public Cluster(String label) {
+        this.label = label;
     }
 
-    public float getValue() {
-        return value;
+
+    public Cluster(Cluster cluster1, Cluster cluster2) {
+        this.cluster1 = cluster1;
+        this.cluster2 = cluster2;
+        this.label = cluster1.getLabel() + "," + cluster2.getLabel();
+        this.size = this.size() + cluster1.size() + cluster2.size();
     }
 
-    public Cluster getNode1() {
-        return node1;
+    public String getLabel() {
+        return label;
     }
 
-    public Cluster getNode2() {
-        return node2;
+    public int size() {
+        return size;
     }
 
-    public Cluster(String name, Cluster node1, Cluster node2,float value) {
-        this.name = name;
-        this.node1 = node1;
-        this.node2 = node2;
-        this.value = value;
+    public Cluster getCluster1() {
+        return cluster1;
+    }
+
+    public Cluster getCluster2() {
+        return cluster2;
     }
 }
